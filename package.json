@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run clean && NODE_ENV=production webpack -d",
+    "dev": "npm run clean && cross-env NODE_ENV=production webpack -d",
     "hotdev": "webpack-dev-server",
-    "prod": "npm run clean && NODE_ENV=production webpack -p",
+    "prod": "npm run clean && cross-env NODE_ENV=production webpack -p",
     "clean": "rimraf ./dist/*"
   },
   "author": "",
@@ -19,6 +19,7 @@
     "babel-preset-react": "^6.24.1",
     "bootstrap-loader": "^2.1.0",
     "bootstrap-sass": "^3.3.7",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.28.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
