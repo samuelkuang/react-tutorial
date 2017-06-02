@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const bootstrapEntryPoints = require('./webpack.bootstrap.config');
-const glob = require('glob');
+const glob = require('glob-all');
 const PurifyCSSPlugin = require('purifycss-webpack');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -25,7 +25,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js'
+        filename: 'js/[name].js'
     },
     module: {
         rules: [{
@@ -60,7 +60,7 @@ module.exports = {
         compress: true,
         port: 9000,
         hot: true,
-        // stats: "errors-only",
+        stats: "errors-only",
         // open: true
     },
     plugins: [
@@ -69,7 +69,7 @@ module.exports = {
             minify: {
                 collapseWhitespace: isProd
             },
-            hash: true,
+            // hash: true,
             excludeChunks: ['contact'],
             filename: 'index.html',
             template: './src/index.html',
@@ -79,21 +79,28 @@ module.exports = {
             minify: {
                 collapseWhitespace: isProd
             },
-            hash: true,
+            // hash: true,
             chunks: ['contact'],
             filename: 'contact.html',
             template: './src/contact.pug',
         }),
         new ExtractTextPlugin({
-            filename: "/css/[name].css",
+            filename: "css/[name].css",
             disable: !isProd,
             allChunks: true
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
         // Make sure this is after ExtractTextPlugin
         new PurifyCSSPlugin({
-            paths: glob.sync(path.join(__dirname, 'src/*.html'))
+            moduleExtensions: ['.html', '.js'],
+            minimize: true,
+            paths: glob.sync([
+                path.join(__dirname, 'src/*.html')])
         })
     ]
 }
