@@ -33,14 +33,16 @@
     "pug-loader": "^2.3.0",
     "purify-css": "^1.2.2",
     "purifycss-webpack": "^0.7.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.17.0",
     "url-loader": "^0.5.8",
-    "webpack": "^2.5.1",
+    "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.6.1"
+  }
 }

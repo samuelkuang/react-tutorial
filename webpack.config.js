@@ -19,7 +19,7 @@ const bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoint
 
 module.exports = {
     entry: {
-        app: './src/app.js',
+        index: './src/index.js',
         contact: './src/contact.js',
         bootstrap: bootstrapConfig
     },
@@ -33,7 +33,7 @@ module.exports = {
                 use: cssConfig
             },
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: "babel-loader"
             },
@@ -58,7 +58,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
-        port: 9000,
+        port: 9080,
         hot: true,
         stats: "errors-only",
         // open: true
@@ -98,7 +98,7 @@ module.exports = {
         // Make sure this is after ExtractTextPlugin
         new PurifyCSSPlugin({
             moduleExtensions: ['.html', '.js'],
-            minimize: true,
+            // minimize: isProd,
             paths: glob.sync([
                 path.join(__dirname, 'src/*.html')])
         })
