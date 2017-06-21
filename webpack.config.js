@@ -96,11 +96,11 @@ module.exports = {
             jQuery: "jquery"
         }),
         // Make sure this is after ExtractTextPlugin
-        new PurifyCSSPlugin({
-            moduleExtensions: ['.html', '.js'],
-            // minimize: isProd,
-            paths: glob.sync([
-                path.join(__dirname, 'src/*.html')])
-        })
+        // new PurifyCSSPlugin({
+        //     moduleExtensions: ['.html', '.js'],
+        //     // minimize: isProd,
+        //     paths: glob.sync([
+        //         path.join(__dirname, 'src/*.html')])
+        // })
     ]
 }
